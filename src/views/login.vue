@@ -1,3 +1,11 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: shaye
+ * @Date: 2023-03-26 15:56:05
+ * @LastEditors: shaye
+ * @LastEditTime: 2023-03-28 08:47:07
+-->
 <template>
     <div>
         <h2>系统登录</h2>
@@ -25,6 +33,10 @@
 <script setup>
 import { reactive } from 'vue';
 import api from '../../public/api'
+import { ElMessage } from "element-plus";
+import { useRouter } from "vue-router";
+
+const router = useRouter()
 
 const loginForm = reactive({
     name: '',
@@ -45,12 +57,29 @@ function login() {
     let name = loginForm.name;
     let password = loginForm.password
     api.login(name, password).then(res => {
-
+        console.log(res)
+        if (res.data.status == 200) {
+            window.localStorage.setItem('token',res.data.token)
+            window.localStorage.setItem('name',name)
+            router.push('/')
+            ElMessage({
+                message: res.data.msg,
+                type: 'success',
+                showClose: true
+            })
+        } else {
+            ElMessage({
+                message: res.data.msg,
+                type: 'error',
+                showClose: true
+            })
+        }
     })
 }
 
 function reset() {
-
+    loginForm.name = ''
+    loginForm.password = ''
 }
 
 

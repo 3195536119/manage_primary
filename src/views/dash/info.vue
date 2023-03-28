@@ -1,0 +1,64 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: shaye
+ * @Date: 2023-03-28 09:47:27
+ * @LastEditors: shaye
+ * @LastEditTime: 2023-03-28 10:43:23
+-->
+<template>
+    <el-card class="box-card">
+        <template #header>
+            <div class="card-header">
+                <el-avatar :src="require('../../assets/user.png')" />
+                <div class="user_detail">
+                    <h3>Admin</h3>
+                    <div class="user_detail_auth">超级管理员</div>
+                </div>
+            </div>
+        </template>
+        <div class="login_info">
+            <p>上次登录时间：<span>2022-05-17</span></p>
+            <p>上次登录地点：<span>湖北 武汉</span></p>
+        </div>
+    </el-card>
+</template>
+
+<script setup>
+
+</script>
+
+<style scoped>
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user_detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-content: space-around;
+}
+
+.user_detail_auth {
+    color: rgb(213, 213, 210);
+    font-size: 8px;
+}
+
+.login_info {
+    margin-top: 10px;
+    color: rgb(213, 213, 210);
+}
+
+.login_info p {
+    margin-left: 40px;
+    font-size: 12px;
+}
+
+.login_info p span {
+    margin-left: 75px;
+}
+
+</style>
