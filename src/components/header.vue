@@ -18,7 +18,6 @@
             </template>
         </el-dropdown>
     </div>
-    <router-view></router-view>
 </template>
 
 <script setup>

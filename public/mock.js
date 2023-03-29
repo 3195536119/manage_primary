@@ -8,6 +8,33 @@
  */
 const Mock = require("mockjs");
 
+//订单数据
+const billData = [{
+    type:'pay',
+    value: 320,
+    text: '当天支付订单',
+}, {
+    type:'star',
+    value: 540,
+    text: '当天收藏订单',
+}, {
+    type:'unpaid',
+    value: 79,
+    text: '当天未支付订单',
+}, {
+    type:'pay',
+    value: 5400,
+    text: '当月支付订单',
+}, {
+    type:'star',
+    value: 8900,
+    text: '当月收藏订单',
+}, {
+    type:'unpaid',
+    value: 540,
+    text: '当月未支付订单',
+}]
+
 /**
  * 将Url中的数据拆分为参数对象
  * @param {*} url 
@@ -46,5 +73,13 @@ Mock.mock(/login/, 'get', (options) => {
     return {
         status: 500,
         msg: '密码输入错误'
+    }
+})
+
+//获取订单数据
+Mock.mock(/getBill/, 'get', options => {
+    return {
+        status: 200,
+        data: billData
     }
 })

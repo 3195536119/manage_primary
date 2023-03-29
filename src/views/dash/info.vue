@@ -4,7 +4,7 @@
  * @Author: shaye
  * @Date: 2023-03-28 09:47:27
  * @LastEditors: shaye
- * @LastEditTime: 2023-03-28 10:43:23
+ * @LastEditTime: 2023-03-29 10:20:13
 -->
 <template>
     <el-card class="box-card">
@@ -43,22 +43,29 @@
 }
 
 .user_detail_auth {
-    color: rgb(213, 213, 210);
+    color: rgb(143, 147, 153);
     font-size: 8px;
 }
 
 .login_info {
     margin-top: 10px;
-    color: rgb(213, 213, 210);
+    color: rgb(143, 147, 153);
 }
 
 .login_info p {
-    margin-left: 40px;
+    margin-left: 30px;
     font-size: 12px;
 }
 
 .login_info p span {
-    margin-left: 75px;
+    margin-left: 60px;
+}
+.login_info p:first-child
+{
+    margin-bottom: 5px;
 }
 
+/deep/.el-card__body {
+    padding: 6px;
+}
 </style>
