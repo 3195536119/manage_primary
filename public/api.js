@@ -22,6 +22,19 @@ export default {
      */
     getBillData(){
         return axios.get('/getBill');
+    },
+    /**
+     * 获取dash页的tableData数据
+     * @returns 请求表格数据的promise对象
+     */
+    getTableData(){
+        return axios.get('/getTableData')
+    },
+    /**
+     * 获取饼图的数据
+     * @returns 请求饼图数据的promise对象
+     */
+    getPieData(){
+        return axios.get('/getPieData')
     }
-
 }

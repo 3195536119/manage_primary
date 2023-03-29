@@ -4,7 +4,7 @@
  * @Author: shaye
  * @Date: 2023-03-27 18:34:22
  * @LastEditors: shaye
- * @LastEditTime: 2023-03-28 09:38:55
+ * @LastEditTime: 2023-03-29 11:30:15
 -->
 <template>
     <div class="aside_container">
@@ -48,6 +48,7 @@
 <style  scoped>
 .aside_container{
     /*background-color: rgb(81, 92, 100);*/
+    height: 100%;
 }
 
 .aside_container .el-menu{

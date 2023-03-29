@@ -4,16 +4,22 @@
  * @Author: shaye
  * @Date: 2023-03-26 15:47:37
  * @LastEditors: shaye
- * @LastEditTime: 2023-03-29 10:11:59
+ * @LastEditTime: 2023-03-29 13:55:41
 -->
 <template>
-    <div class="container">
-        <Aside style="width: 200px;margin-right:3px" />
-        <div class="container_right">
-            <Header style="height:50px;margin-bottom:10px" />
-            <router-view></router-view>
-        </div>
-    </div>
+    <el-container>
+        <el-aside width="auto">
+            <Aside />
+        </el-aside>
+        <el-container>
+            <el-header height="50px">
+                <Header style="height: 50px;"/>
+            </el-header>
+            <el-main>
+                <router-view></router-view>
+            </el-main>
+        </el-container>
+    </el-container>
 </template>
 
 <script setup>
@@ -23,13 +29,4 @@ import Header from './header.vue'
 </script>
 
 <style  scoped>
-.container {
-    display: flex;
-}
-
-.container_right {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
 </style>

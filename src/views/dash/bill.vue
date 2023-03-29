@@ -42,7 +42,7 @@ api.getBillData().then(res => {
 
 <style scoped>
 .box-card {
-    width: 240px;
+    width: 200px;
 }
 
 .box_container {

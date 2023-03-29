@@ -4,7 +4,7 @@
  * @Author: shaye
  * @Date: 2023-03-28 09:47:27
  * @LastEditors: shaye
- * @LastEditTime: 2023-03-29 10:20:13
+ * @LastEditTime: 2023-03-29 13:38:07
 -->
 <template>
     <el-card class="box-card">
@@ -58,7 +58,7 @@
 }
 
 .login_info p span {
-    margin-left: 60px;
+    margin-left: 40px;
 }
 .login_info p:first-child
 {
