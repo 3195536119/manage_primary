@@ -13,4 +13,9 @@ const billMap = {
     }
 }
 
-export {billMap}
+const sexMap = {
+    0: '女',
+    1: '男'
+}
+
+export { billMap, sexMap }

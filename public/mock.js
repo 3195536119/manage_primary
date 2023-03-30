@@ -4,102 +4,11 @@
  * @Author: shaye
  * @Date: 2023-03-26 16:20:21
  * @LastEditors: shaye
- * @LastEditTime: 2023-03-29 11:13:38
+ * @LastEditTime: 2023-03-30 20:27:43
  */
 const Mock = require("mockjs");
 
-//订单数据
-const billData = [{
-    type: 'pay',
-    value: 320,
-    text: '当天支付订单',
-}, {
-    type: 'star',
-    value: 540,
-    text: '当天收藏订单',
-}, {
-    type: 'unpaid',
-    value: 79,
-    text: '当天未支付订单',
-}, {
-    type: 'pay',
-    value: 5400,
-    text: '当月支付订单',
-}, {
-    type: 'star',
-    value: 8900,
-    text: '当月收藏订单',
-}, {
-    type: 'unpaid',
-    value: 540,
-    text: '当月未支付订单',
-}]
-
-//dash表格数据
-const tableData = [
-    {
-        name: 'Oppo',
-        todayBuy: 10,
-        monthBuy: 300,
-        totalBuy: 800,
-    },
-    {
-        name: 'Vivo',
-        todayBuy: 100,
-        monthBuy: 400,
-        totalBuy: 1200,
-    },
-    {
-        name: 'Apple',
-        todayBuy: 320,
-        monthBuy: 600,
-        totalBuy: 2300,
-    },
-    {
-        name: 'Xiaomi',
-        todayBuy: 500,
-        monthBuy: 3200,
-        totalBuy: 9000,
-    },
-    {
-        name: 'Sumsang',
-        todayBuy: 4,
-        monthBuy: 78,
-        totalBuy: 290,
-    },
-    {
-        name: 'Huawei',
-        todayBuy: 700,
-        monthBuy: 3200,
-        totalBuy: 6700,
-    },
-]
-const pieData = [
-    {
-        name: 'Apple',
-        value: 550,
-    },
-    {
-        name: 'Vivo',
-        value: 250,
-    },
-    {
-        name: 'Oppo',
-        value: 360,
-    },
-    {
-        name: 'Huawei',
-        value: 620,
-    },
-    {
-        name: 'Sumsang',
-        value: 120,
-    },
-    {
-        name: 'Xiaomi',
-        value: 480,
-    },
-]
+const datas = require('./datas.js')
 
 /**
  * 将Url中的数据拆分为参数对象
@@ -146,7 +55,7 @@ Mock.mock(/login/, 'get', (options) => {
 Mock.mock(/getBill/, 'get', options => {
     return {
         status: 200,
-        data: billData
+        data: datas.billData
     }
 })
 
@@ -154,13 +63,75 @@ Mock.mock(/getBill/, 'get', options => {
 Mock.mock(/getTableData/, 'get', options => {
     return {
         status: 200,
-        data: tableData
+        data: datas.tableData
     }
 })
 
+//获取饼图数据
 Mock.mock(/getPieData/, 'get', options => {
     return {
         status: 200,
-        data: pieData
+        data: datas.pieData
+    }
+})
+
+//获取所有的用户信息
+Mock.mock(/getAllUsers/, 'get', options => {
+    return {
+        status: 200,
+        data: datas.userInfo
+    }
+})
+
+//添加一个用户
+Mock.mock(/addUser/, 'get', options => {
+    let params = getParamsObj(options.url)
+    let name = decodeURI(params.name)
+    let address = decodeURI(params.address)
+    datas.userInfo.unshift({
+        id: Mock.Random.guid(),
+        name: name,
+        address: address,
+        age: params['age'],
+        birth: params['birth'],
+        sex: params['sex']
+    })
+    console.log(datas.userInfo)
+    return {
+        status: 200,
+        msg: '添加成功'
+    }
+})
+
+//修改用户信息
+Mock.mock(/editUserInfo/, 'get', options => {
+    let params = getParamsObj(options.url)
+    let name = decodeURI(params.name)
+    let address = decodeURI(params.address.replaceAll("+", " "))
+    console.log(address)
+    datas.userInfo.some(user => {
+        if (user.id == params.id) {
+            user.address = address
+            user.age = params.age
+            user.birth = params.birth
+            user.name = name
+            user.sex = params.sex
+        }
+    })
+    return {
+        status: 200,
+        msg: '修改成功'
+    }
+})
+
+//删除用户信息
+Mock.mock(/deleteUser/, 'get', options => {
+    let paramsObj = getParamsObj(options.url)
+    datas.userInfo = datas.userInfo.filter(user => {
+        return user.id != paramsObj.id
+    })
+    return {
+        status: 200,
+        msg: '删除成功'
     }
 })
