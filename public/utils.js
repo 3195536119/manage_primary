@@ -18,4 +18,9 @@ const sexMap = {
     1: '男'
 }
 
-export { billMap, sexMap }
+const indexMap = {
+    '/dash': '看板',
+    '/userManage': '用户管理'
+}
+
+export { billMap, sexMap, indexMap }
